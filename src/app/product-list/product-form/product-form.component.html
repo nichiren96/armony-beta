@@ -1,0 +1,124 @@
+<div class="wrapper ">
+    <app-sidebar></app-sidebar>
+    <router-outlet></router-outlet>
+    <div class="main-panel">
+        <app-header></app-header>
+        <!-- Content -->
+        <div class="content" style="">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/products" style="cursor: pointer"
+                                        href="">Articles</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Ajouter un article</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <div class="card">
+
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Ajouter un nouvel article</h4>
+                                <p class="card-category">Veuillez rensigner les détails sur cet article</p>
+                                <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+                            </div>
+                            <div class="card-body">
+
+                                <form [formGroup]="productForm" (ngSubmit)="onSaveProduct()">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="reference" class="bmd-label-floating">Référence</label>
+                                                <input formControlName="reference" type="text" class="form-control"
+                                                    name="reference" id="reference" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="price" class="bmd-label-floating">Prix</label>
+                                                <input formControlName="price" type="text" class="form-control"
+                                                    name="price" id="price" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="designation" class="bmd-label-floating">Désignation</label>
+                                                <input formControlName="designation" type="text" class="form-control"
+                                                    name="designation" id="designation" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="cover_image" class="bmd-label-floating">Photo</label>
+                                                <input (change)="detectFiles($event)"  type="file" class="form-control"
+                                                    accept="image/*" name="cover_image" id="cover_image" />
+                                            </div>
+                                            <p class="text-success" *ngIf="fileUploaded">Photo chargé avec succès</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <button class="btn btn-primary" 
+                                            [disabled]="productForm.invalid || fileIsUploading"
+                                            type="submit">Enregistrer</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Content -->
+    </div>
+
+
+    <!-- Footer 
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="float-left">
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://creative-tim.com/presentation">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright float-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, made with <i class="material-icons">favorite</i> by
+                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                </div>
+            </div>
+        </footer>
+        End Footer -->
+</div>

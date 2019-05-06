@@ -1,0 +1,35 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="">Armony</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                    <a class="nav-link" routerLink="/auth/signin" style="cursor: pointer">
+                        <span class="">Se connecter</span>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                    <a class="nav-link" routerLink="/auth/signup" style="cursor: pointer">
+                        <span class="">Créer compte</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="isAuth">
+                    <a class="nav-link" (click)="onSignOut()" style="cursor: pointer">
+                        <span class="">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->

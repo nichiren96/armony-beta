@@ -1,0 +1,81 @@
+<div class="wrapper ">
+  <app-sidebar></app-sidebar>
+  <router-outlet></router-outlet>
+  <div class="main-panel">
+    <app-header></app-header>
+    <!-- Content -->
+    <div class="content" style="">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6">
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/products" style="cursor: pointer" href="">Articles</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.designation }}</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-6 col-sm-6">
+            <div class="card">
+
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">{{ product.reference }}</h4>
+                <p class="card-category">{{ product.designation }}</p>
+                <p class="card-category"> {{ product.price }} AR</p>
+                <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+              </div>
+              <div class="card-body">
+
+                <img alt="Image article" [src]="product.cover_image" class="img-responsive" *ngIf="product.cover_image"/>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Content -->
+  </div>
+
+
+  <!-- Footer 
+      <footer class="footer">
+          <div class="container-fluid">
+              <nav class="float-left">
+                  <ul>
+                      <li>
+                          <a href="https://www.creative-tim.com">
+                              Creative Tim
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://creative-tim.com/presentation">
+                              About Us
+                          </a>
+                      </li>
+                      <li>
+                          <a href="http://blog.creative-tim.com">
+                              Blog
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://www.creative-tim.com/license">
+                              Licenses
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="copyright float-right">
+                  &copy;
+                  <script>
+                      document.write(new Date().getFullYear())
+                  </script>, made with <i class="material-icons">favorite</i> by
+                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+              </div>
+          </div>
+      </footer>
+      End Footer -->
+</div>

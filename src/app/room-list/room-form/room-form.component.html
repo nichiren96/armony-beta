@@ -1,0 +1,120 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/rooms" style="cursor: pointer" href="">Chambres</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Ajouter une chambre</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Ajouter un nouvelle chambre</h4>
+              <p class="card-category">Veuillez renseigner les détails sur cette chambre</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="roomForm" (ngSubmit)="onSaveRoom()">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="form-group">
+                      <label for="hotel" class="bmd-label-floating">Hôtel où est situé cette chambre</label>
+                      <select formControlName="hotel" id="hotel" name="hotel" class="form-control">
+                        <option value="1">Baobab City</option>
+                        <option value="2">Calypso</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Catégorie de cette chambre</label>
+                      <select formControlName="category" id="category" name="category" class="form-control">
+                        <option value="">SUITE</option>
+                        <option value="2">CHAMBRE SIMPLE</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-3">
+                        <div class="form-group">
+                          <label for="room_beds" class="bmd-label-floating">Nombre de lits</label>
+                          <input formControlName="room_beds" type="text" name="room_beds" id="room_beds"
+                            class="form-control" />
+                        </div>
+                      </div>
+                  
+                  <div class="col-lg-6 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="room_capacity" class="bmd-label-floating">Capacité</label>
+                      <input formControlName="room_capacity" type="text" class="form-control" name="room_capacity"
+                        id="room_capacity" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-3">
+                        <div class="form-group">
+                          <label for="room_number" class="bmd-label-floating">Numéro de cette chambre</label>
+                          <input formControlName="room_number" type="text" class="form-control" name="room_number"
+                            id="room_number" />
+                        </div>
+                      </div>
+                  <div class="col-lg-6 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="room_phone" class="bmd-label-floating">Téléphone</label>
+                      <input formControlName="room_phone" type="text" class="form-control" name="room_phone"
+                        id="room_phone" />
+                    </div>
+                  </div>
+                 
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <div class="form-group">
+                        <label class="bmd-label-floating"> Indiquez si il y a une information
+                          spécifique
+                          à propos de cette chambre</label>
+                        <textarea formControlName="room_description" class="form-control" name="room_description"
+                          id="room_description" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <button class="btn btn-primary" [disabled]="roomForm.invalid" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

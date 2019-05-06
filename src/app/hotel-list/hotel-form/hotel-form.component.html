@@ -1,0 +1,123 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
+    <!-- Content -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-6">
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerLink="/clients" style="cursor: pointer"
+                                    href="">Hôtels</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Ajouter un hôtel</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-3">
+                    <div class="card">
+
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Ajouter un nouveau hôtel</h4>
+                            <p class="card-category">Veuillez renseigner les détails sur votre hôtel</p>
+                            <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+                        </div>
+                        <div class="card-body">
+
+                            <form [formGroup]="hotelForm" (ngSubmit)="onSaveHotel()">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="class" class="bmd-label-floating">Classe</label>
+                                            <select formControlName="class" id="class" name="class" class="form-control">
+                                                <option value="1">1 étoile</option>
+                                                <option value="2">2 étoiles</option>
+                                                <option value="3">3 étoiles</option>
+                                                <option value="4">4 étoiles</option>
+                                                <option value="5">5 étoiles</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-group">
+                                            <label for="city" class="bmd-label-floating">Localisation</label>
+                                            <select formControlName="city" id="city" name="city" class="form-control">
+                                                <option value="Antananarivo">Antananarivo</option>
+                                                <option value="Antsiranana">Antsiranana</option>
+                                                <option value="Mahajanga">Mahajanga</option>
+                                                <option value="Toamaasina">Toamasina</option>
+                                                <option value="Fianarantsoa">Fianarantsoa</option>
+                                                <option value="Toliary">Toliary</option>
+                                                <option value="Antsirabe">Antsirabe</option>
+                                                <option value="Nosy Be">Nosy Be</option>
+                                                <option value="Tolagnaro">Tolagnaro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="name" class="bmd-label-floating">Nom de votre hôtel</label>
+                                            <input formControlName="name" type="text" class="form-control"
+                                                name="name" id="name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="firstname" class="bmd-label-floating">Téléphone</label>
+                                            <input formControlName="phone" type="text" class="form-control"
+                                                name="phone" id="phone" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="logo" class="bmd-label-floating">Logo de votre hôtel</label>
+                                            <input formControlName="logo" type="text" class="form-control"
+                                                name="logo" id="logo" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating"> 
+                                                    Veuillez renseigner une brève description de votre hôtel
+                                                    </label>
+                                                <textarea formControlName="description" class="form-control" name="description"
+                                                    id="description" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <button class="btn btn-primary" [disabled]="hotelForm.invalid"
+                                        type="submit">Enregistrer</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <app-footer></app-footer>
+</div>

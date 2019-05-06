@@ -1,0 +1,70 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+
+  <!-- Content -->
+  <div class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6">
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/clients" style="cursor: pointer" href="">Clients</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste de vos catégories de chambres</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">Liste de vos catégories de chambres</h4>
+                <p class="card-category">Trouvez ci-dessous les informations sur vos catégories de chambres</p>
+                <button class="btn btn-success pull-right" (click)="onNewCategory()">Ajouter catégorie</button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>
+                        Catégorie
+                      </th>
+                      <th>
+                        Description
+                      </th>
+        
+                      <th>
+                        Détails
+                      </th>
+                      <th>
+                        Supprimer
+                      </th>
+                    </thead>
+                    <tbody id="productList">
+                      <tr *ngFor="let category of categories; let i = index">
+                        <td>{{ category.label }} </td>
+                        <td>{{ category.description }}</td>
+    
+                        <td><span style="cursor: pointer;" (click)="onViewCategory(i)">Détails</span></td>
+                        <td><span style="cursor: pointer;" class="text-danger"
+                            (click)="onDeleteCategory(category)">Supprimer</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+
+</div>
