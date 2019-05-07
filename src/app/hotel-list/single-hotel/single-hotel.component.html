@@ -1,3 +1,119 @@
-<p>
-  single-hotel works!
-</p>
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
+    <!-- Content -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-6">
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerLink="/clients" style="cursor: pointer"
+                                    href="">Hôtels</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Modification hôtel</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-3">
+                    <div class="card">
+
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Modifier votre hôtel</h4>
+                            <p class="card-category">Veuillez renseigner les détails sur votre hôtel</p>
+                            <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+                        </div>
+                        <div class="card-body">
+
+                            <form [formGroup]="hotelForm" (ngSubmit)="onUpdateHotel()">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="class" class="bmd-label-floating">Classe</label>
+                                            <input formControlName="classe" id="class" 
+                                              value="{{hotel.class_id}}"
+                                              name="class" class="form-control">
+                                               
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-group">
+                                            <label for="city" class="bmd-label-floating">Localisation</label>
+                                            <input formControlName="city" 
+                                              id="city" name="city" value="{{hotel.city}}"
+                                               class="form-control">
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="name" class="bmd-label-floating">Nom de votre hôtel</label>
+                                            <input formControlName="name" type="text" 
+                                                class="form-control" value="{{hotel.name}}"
+                                                name="name" id="name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="firstname" class="bmd-label-floating">Téléphone</label>
+                                            <input formControlName="phone" 
+                                              type="text" class="form-control"
+                                              value="{{hotel.phone}}"
+                                                name="phone" id="phone" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label for="logo" class="bmd-label-floating">Logo de votre hôtel</label>
+                                            <input formControlName="logo" 
+                                              type="text" class="form-control"
+                                                value="{{hotel.logo}}"
+                                                name="logo" id="logo" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-6 col-sm-3">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating"> 
+                                                    Veuillez renseigner une brève description de votre hôtel
+                                                    </label>
+                                                <textarea formControlName="description"
+                                                 class="form-control" name="description" value="{{hotel.value}}"
+                                                    id="description" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <button class="btn btn-primary" [disabled]="hotelForm.invalid"
+                                        type="submit">Enregistrer</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <app-footer></app-footer>
+</div>

@@ -42,6 +42,20 @@ export class ClientsService {
     );
   }
 
+  getSingleByPasseport(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/clients/' + id).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
   createNewClient(newClient: Client) {
 
     this.clients.push(newClient);
@@ -50,8 +64,11 @@ export class ClientsService {
 
   }
 
-  updateClient(client: Client) {
-    firebase.database().ref('/clients').update(client);
+  updateClient(client: Client, id: number) {
+
+    firebase.database().ref('clients/' + id).update(client);
+    this.emitClients();
+
   }
 
 

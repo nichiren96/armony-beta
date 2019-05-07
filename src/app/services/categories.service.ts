@@ -51,8 +51,9 @@ export class CategoriesService {
 
   }
 
-  updateCategory(Category: Category) {
-    firebase.database().ref('/categories').update(Category);
+  updateCategory(category: Category, id: number) {
+    firebase.database().ref('categories/' + id).update(category);
+    this.emitCategories();
   }
 
 

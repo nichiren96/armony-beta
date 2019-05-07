@@ -50,8 +50,10 @@ export class HotelsService {
 
   }
 
-  updateHotel(Hotel: Hotel) {
-    firebase.database().ref('/hotels').update(Hotel);
+  updateHotel(hotel: Hotel, id: number) {
+    firebase.database().ref('clients/' + id).update(hotel);
+    this.emitHotels();
+
   }
 
 

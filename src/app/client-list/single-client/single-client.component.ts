@@ -13,6 +13,7 @@ export class SingleClientComponent implements OnInit {
 
   clientForm: FormGroup;
   client: Client;
+  client_id: number;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class SingleClientComponent implements OnInit {
   ngOnInit() {
   
     const id = this.route.snapshot.params['id'];
+    this.client_id = this.route.snapshot.params['id'];
     this.clientService.getSingleClient(+id).then(
       (client: Client) => {
         this.client = client;
@@ -53,7 +55,7 @@ export class SingleClientComponent implements OnInit {
 
     const client = new Client(sex, nationality, firstname, lastname, phone, passport, remark);
 
-    this.clientService.updateClient(client);
+    this.clientService.updateClient(client, this.client_id);
 
     this.router.navigate(['/clients'])
   }

@@ -1,3 +1,79 @@
-<p>
-  single-category works!
-</p>
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/categories" style="cursor: pointer" href="">Catégories</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Modification catégorie</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Modification de cette catégorie de chambres</h4>
+              <p class="card-category">Veuillez renseigner les détails sur cette catégorie</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="categoryForm" (ngSubmit)="onUpdateCategory()">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Catégorie</label>
+                      <input formControlName="category" 
+                        type="text" class="form-control" 
+                        name="category" value="{{category.label}}"
+                        id="category" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <div class="form-group">
+                        <label class="bmd-label-floating"> Indiquez les carctéristiques
+                          des chambres dans cette catégorie
+                        </label>
+                        <textarea formControlName="description" 
+                          class="form-control" name="description"
+                           id="description" value="{{category.description}}"
+                          rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <button class="btn btn-primary" [disabled]="categoryForm.invalid" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

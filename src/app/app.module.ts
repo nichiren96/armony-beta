@@ -41,6 +41,13 @@ import { CategoriesService } from './services/categories.service';
 import { HotelsService } from './services/hotels.service';
 import { RoomsService } from './services/rooms.service';
 import { FaresService } from './services/fares.service';
+import { BookingListComponent } from './booking-list/booking-list.component';
+import { BookingFormComponent } from './booking-list/booking-form/booking-form.component';
+import { BookingsService } from './services/bookings.service';
+import { SingleBookingComponent } from './booking-list/single-booking/single-booking.component';
+import { FareListComponent } from './fare-list/fare-list.component';
+import { SingleFareComponent } from './fare-list/single-fare/single-fare.component';
+import { FareFormComponent } from './fare-list/fare-form/fare-form.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -60,6 +67,12 @@ const appRoutes: Routes = [
   { path: 'rooms', canActivate: [AuthGuardService], component: RoomListComponent},
   { path: 'rooms/new', canActivate: [AuthGuardService], component: RoomFormComponent},
   { path: 'rooms/view/:id', canActivate: [AuthGuardService], component: SingleRoomComponent},
+  { path: 'bookings', canActivate: [AuthGuardService], component: BookingListComponent},
+  { path: 'bookings/new', canActivate: [AuthGuardService], component: BookingFormComponent},
+  { path: 'bookings/view/:id', canActivate: [AuthGuardService], component: SingleBookingComponent},
+  { path: 'fares', canActivate: [AuthGuardService], component: FareListComponent},
+  { path: 'fares/new', canActivate: [AuthGuardService], component: FareFormComponent},
+  { path: 'fares/view/:id', canActivate: [AuthGuardService], component: SingleFareComponent},
   { path: '', redirectTo: 'auth/signin', pathMatch: 'full'},
   { path: '**', redirectTo: 'auth/signin'}
 ];
@@ -94,7 +107,12 @@ const appRoutes: Routes = [
     RoomListComponent,
     SingleRoomComponent,
     RoomFormComponent,
-
+    BookingListComponent,
+    BookingFormComponent,
+    SingleBookingComponent,
+    FareListComponent,
+    SingleFareComponent,
+    FareFormComponent
   
   ],
   imports: [
@@ -113,7 +131,8 @@ const appRoutes: Routes = [
     CategoriesService,
     HotelsService,
     RoomsService,
-    FaresService
+    FaresService,
+    BookingsService
   ],
   bootstrap: [AppComponent]
 })

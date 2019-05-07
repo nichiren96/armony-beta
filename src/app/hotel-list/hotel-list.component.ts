@@ -13,8 +13,11 @@ export class HotelListComponent implements OnInit {
 
   hotels: Hotel[];
   hotelsSubscription: Subscription;
+  hotelStars: number[];
 
-  constructor(private hotelService: HotelsService, private router: Router) { }
+  constructor(private hotelService: HotelsService, private router: Router) {
+   
+   }
 
   ngOnInit() {
     this.hotelsSubscription = this.hotelService.hotelsSubject.subscribe(

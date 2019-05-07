@@ -4,6 +4,7 @@ export class Booking {
         public booking_date: string,
         public check_in: string,
         public check_out: string,
+        public person: number,
         public amount: string,
         public status: string,
         public payment_status: string,
