@@ -1,0 +1,145 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/bookings" style="cursor: pointer" href="">Réservations</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Créer une réservation</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Créer une nouvelle réservation</h4>
+              <p class="card-category">Veuillez renseigner les détails sur cette réservation</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="bookingForm" (ngSubmit)="onSaveBooking()">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_in" class="bmd-label-floating">Arrivée</label>
+                      <input type="date" class="" formControlName="check_in" name="check_in" id="check_in" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_out" class="bmd-label-floating">Départ</label>
+                      <input type="date" class="" formControlName="check_out" name="check_out" id="check_out" />
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="client" class="bmd-label-floating">Client</label>
+                      <select formControlName="client" class="form-control" id="client" name="client">
+                        <option *ngFor="let client of clients" [value]="client.firstname">
+                          {{ client.firstname }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="product" class="bmd-label-floating">Chambre</label>
+                      <select name="room" id="room" formControlName="room" class="form-control">
+                        <option *ngFor="let room of rooms" [value]="room.room_number">
+                          {{ room.room_number }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="person" class="bmd-label-floating">Occupants</label>
+                      <input type="text" class="form-control" formControlName="person" id="person" name="person">
+
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="amount" class="bmd-label-floating">Montant</label>
+                      <input type="text" class="form-control" formControlName="amount" id="amount" name="amount">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" class="bmd-label-floating">Statut de la
+                        réservation</label>
+                      <select class="form-control" formControlName="status" id="status" name="status">
+                        <option value="Validée" selected>Validée</option>
+                        <option value="Annulée">Annulée</option>
+                        <option value="En attente">En attende de validation</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="mean_of_payment" class="bmd-label-floating">Moyen de
+                        Paiement</label>
+                      <select class="form-control" formControlName="mean_of_payment" id="mean_of_payment"
+                        name="mean_of_payment">
+                        <option value="CASH" selected>CASH</option>
+                        <option value="MOBILE MONEY">MOBILE MONEY</option>
+                        <option value="CHEQUE" selected>CHEQUE</option>
+                        <option value="VISA CARD">CARTE VISA</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="payment_status" class="bmd-label-floating">Statut du
+                        Paiement</label>
+                      <select class="form-control" formControlName="payment_status" id="payment_status"
+                        name="payment_status">
+                        <option value="AVANCE" selected>Avance</option>
+                        <option value="PAYE">Payé</option>
+                        <option value="NON PAYE">Non Payé</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div><!-- Card -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

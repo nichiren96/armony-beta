@@ -1,0 +1,113 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/fares" style="cursor: pointer" href="">Tarifs</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Ajouter un tarif</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Ajouter un tarif</h4>
+              <p class="card-category">Veuillez renseigner les détails sur ce tarif</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="fareForm" (ngSubmit)="onSaveFare()">
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="fare" class="bmd-label-floating">Tarif</label>
+                      <input type="text" class="form-control" 
+                          id="fare" formControlName="fare" name="fare"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Catégorie de chambres</label>
+                      <select formControlName="category" class="form-control" id="category" name="category">
+                        <option *ngFor="let category of categories" [value]="category.label">
+                          {{ category.label }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Classe de l'hôtel</label>
+                      <select formControlName="classe" class="form-control" name="classe" id="classe">
+                        <option value="1">1 étoile</option>
+                        <option value="2">2 étoiles</option>
+                        <option value="3">3 étoiles</option>
+                        <option value="4">4 étoiles</option>
+                        <option value="5">5 étoiles</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                      <div class="form-group">
+                        <label for="fare" class="bmd-label-floating">Prix par pax</label>
+                        <input type="text" class="form-control" 
+                            id="price" formControlName="price" name="price"/>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <div class="form-group">
+                        <label class="bmd-label-floating"> Indiquez les carctéristiques
+                          de ce tarif
+                        </label>
+                        <textarea formControlName="description" class="form-control" name="description" id="description"
+                          rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <button class="btn btn-primary" [disabled]="fareForm.invalid" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

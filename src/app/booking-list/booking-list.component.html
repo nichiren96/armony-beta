@@ -1,0 +1,84 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+
+  <!-- Content -->
+  <div class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6">
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/bookings" style="cursor: pointer" href="">Réservations</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste des réservations</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">Liste des réservations</h4>
+                <p class="card-category">Trouvez ci-dessous les informations sur les réservations</p>
+                <button class="btn btn-success pull-right" (click)="onNewBooking()">Créer réservation</button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>
+                        Client
+                      </th>
+                      <th>
+                        Arrivée
+                      </th>
+                      <th>
+                        Départ
+                      </th>
+                      <th>
+                        Chambre
+                      </th>
+                      <th>
+                        Statut
+                      </th>
+                       <th>
+                        Paiement
+                      </th>
+                      <th>
+                        Détails
+                      </th>
+                      <th>
+                          Supprimer
+                        </th>
+                    </thead>
+                    <tbody id="productList">
+                      <tr *ngFor="let booking of bookings; let i = index">
+                        <td>{{ booking.client_id }} </td>
+                        <td>{{ booking.check_in | date : 'mediumDate'}}</td>
+                        <td>{{ booking.check_out | date : 'mediumDate'}}</td>
+                        <td>{{ booking.room_id }}</td>
+                        <td>{{ booking.status }}</td>
+                        <td>{{ booking.payment_status }}</td>
+                        <td><span style="cursor: pointer;" (click)="onViewBooking(i)">Détails</span></td>
+                        <td><span style="cursor: pointer;" class="text-danger"
+                            (click)="onDeleteBooking(booking)"><i class=" text-danger material-icons">delete</i></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+
+</div>
