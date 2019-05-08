@@ -9,14 +9,16 @@ import * as firebase from 'firebase';
 export class AppComponent {
   
   constructor() {
-    var config = {
-      apiKey: "AIzaSyDiuoRrODxHGO-aM5fLE-0QKi-h-sjOEmw",
-      authDomain: "lazandraha-9b719.firebaseapp.com",
-      databaseURL: "https://lazandraha-9b719.firebaseio.com",
-      projectId: "lazandraha-9b719",
-      storageBucket: "lazandraha-9b719.appspot.com",
-      messagingSenderId: "815920179583"
-  };
-  firebase.initializeApp(config);
+    var firebaseConfig = {
+      apiKey: "AIzaSyCrzIuyA9wiWJi2RozZcUkBc8YNca2vESk",
+      authDomain: "armony-suite.firebaseapp.com",
+      databaseURL: "https://armony-suite.firebaseio.com",
+      projectId: "armony-suite",
+      storageBucket: "armony-suite.appspot.com",
+      messagingSenderId: "1072827439316",
+      appId: "1:1072827439316:web:bfb4b2c7a133c906"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   }
 }

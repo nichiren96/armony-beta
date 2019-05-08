@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Room } from '../../models/Room.model';
+import { Category } from '../../models/Category.model';
+import { Hotel } from '../../models/Hotel.model';
+import { CategoriesService } from '../../services/categories.service';
 import { RoomsService } from '../../services/rooms.service';
+import { HotelsService } from '../../services/hotels.service';
 
 @Component({
   selector: 'app-room-form',
@@ -13,11 +18,39 @@ export class RoomFormComponent implements OnInit {
 
   roomForm: FormGroup;
 
+  categories: Category[];
+  categoriesSubscription: Subscription;
+
+  hotels: Hotel[];
+  hotelsSubscription: Subscription;
+
+
   constructor(private formBuilder: FormBuilder,
+              private categoryService: CategoriesService,
+              private hotelService: HotelsService,
               private roomService: RoomsService,
               private router: Router) { }
 
   ngOnInit() {
+
+    this.categoriesSubscription = this.categoryService.categoriesSubject.subscribe(
+      (categories: Category[]) => {
+        this.categories = categories;
+      }
+    );
+
+    this.categoryService.getCategories();
+    this.categoryService.emitCategories();
+
+    this.hotelsSubscription = this.hotelService.hotelsSubject.subscribe(
+      (hotels: Hotel[]) => {
+        this.hotels = hotels;
+      }
+    );
+
+    this.hotelService.getHotels();
+    this.hotelService.emitHotels();
+   
     this.initForm();
   }
 

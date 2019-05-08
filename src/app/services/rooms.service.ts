@@ -43,6 +43,20 @@ export class RoomsService {
     );
   }
 
+  getRoomByNumber(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/rooms/' + id).once('value').then(
+          (data) => {
+            resolve(data.key);
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
   createNewRoom(newRoom: Room) {
 
     this.rooms.push(newRoom);

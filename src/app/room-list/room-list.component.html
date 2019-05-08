@@ -6,73 +6,77 @@
 
   <!-- Content -->
   <div class="content">
-      <div class="container-fluid">
+    <div class="container-fluid">
 
-        <div class="row">
-          <div class="col-lg-8 col-md-6 col-sm-6">
-            <nav aria-label="breadcrumb" role="navigation">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/rooms" style="cursor: pointer" href="">Chambres</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Liste de vos chambres</li>
-              </ol>
-            </nav>
-          </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/rooms" style="cursor: pointer" href="">Chambres</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Liste de vos chambres</li>
+            </ol>
+          </nav>
         </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-6 col-sm-6">
-            <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title ">Liste des chambres</h4>
-                <p class="card-category">Trouvez ci-dessous les informations sur vos chambres</p>
-                <button class="btn btn-success pull-right" (click)="onNewRoom()">Ajouter chambre</button>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class="text-primary">
-                      <th>
-                        Numéro
-                      </th>
-                      <th>
-                        Capacité
-                      </th>
-                      <th>
-                        Nb. de lits
-                      </th>
-                      <th>
-                        Catégorie
-                      </th>
-                      <th>
-                        Téléphone
-                      </th>
-                      <th>
-                        Détails
-                      </th>
-                      <th>
-                        Supprimer
-                      </th>
-                    </thead>
-                    <tbody id="productList">
-                      <tr *ngFor="let room of rooms; let i = index">
-                        <td>{{ room.room_number }} </td>
-                        <td>{{ room.room_capacity }}</td>
-                        <td>{{ room.room_beds }}</td>
-                        <td>{{ room.category_id }}</td>
-                        <td>{{ room.room_phone }}</td>
-                        <td><span style="cursor: pointer;" (click)="onViewRoom(i)">Détails</span></td>
-                        <td><span style="cursor: pointer;" class="text-danger"
-                            (click)="onDeleteRoom(room)"><i class=" text-danger material-icons">delete</i></span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-6">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Liste des chambres</h4>
+              <p class="card-category">Trouvez ci-dessous les informations sur vos chambres</p>
+              <button class="btn btn-success pull-right" (click)="onNewRoom()">Ajouter chambre</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>
+                      Hôtel
+                    </th>
+                    <th>
+                      Numéro
+                    </th>
+                    <th>
+                      Capacité
+                    </th>
+                    <th>
+                      Nb. de lits
+                    </th>
+                    <th>
+                      Catégorie
+                    </th>
+                    <th>
+                      Téléphone
+                    </th>
+                    <th>
+                      Détails
+                    </th>
+                    <th>
+                      Supprimer
+                    </th>
+                  </thead>
+                  <tbody id="productList">
+                    <tr *ngFor="let room of rooms; let i = index">
+                      <td>{{ room.hotel_id }} </td>
+                      <td>{{ room.room_number }} </td>
+                      <td>{{ room.room_capacity }}</td>
+                      <td>{{ room.room_beds }}</td>
+                      <td>{{ room.category_id }}</td>
+                      <td>{{ room.room_phone }}</td>
+                      <td><span style="cursor: pointer;" (click)="onViewRoom(i)">Détails</span></td>
+                      <td><span style="cursor: pointer;" class="text-danger" (click)="onDeleteRoom(room)"><i
+                            class=" text-danger material-icons">delete</i></span></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
+  </div>
   <!-- End Content -->
 
   <app-footer></app-footer>

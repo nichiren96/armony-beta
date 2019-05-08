@@ -24,6 +24,9 @@ export class BookingFormComponent implements OnInit {
   rooms: Room[];
   roomsSubscription: Subscription;
 
+  room_price: number;
+  room: Room;
+
   clients: Client[];
   clientsSubscription: Subscription;
 
@@ -66,7 +69,7 @@ export class BookingFormComponent implements OnInit {
       client: ['', Validators.required],
       room: ['', Validators.required],
       person: ['', Validators.required],
-      amount:  ['', Validators.required],
+      amount:  ['ppppp', Validators.required],
       status:  ['', Validators.required],
       check_in:  ['', Validators.required],
       check_out:  ['', Validators.required],
@@ -107,6 +110,26 @@ export class BookingFormComponent implements OnInit {
     
     this.bookingService.createNewBooking(newBooking);
     this.router.navigate(['/bookings'])
+  }
+
+  onChange(room_number: number) {
+    console.log("CHAMBRE SELECTED => " +room_number);
+
+    /// 1.get room category
+    this.roomService.getSingleRoom(0).then(
+      (room: Room) => {
+        this.room = room;
+        console.log("ROOM FROM DB => " + room.category_id);
+      }
+    );
+    //// 2. get category fare
+    this.roomService.getRoomByNumber(room_number).then(
+      (room) => {
+       
+        console.log("ROOM FROM DB => " + room);
+      }
+    );
+
   }
 
   onBack() {

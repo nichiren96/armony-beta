@@ -34,9 +34,11 @@
                   <div class="col-lg-3 col-md-3 col-sm-3">
                     <div class="form-group">
                       <label for="hotel" class="bmd-label-floating">Hôtel où est situé cette chambre</label>
-                      <select formControlName="hotel" id="hotel" name="hotel" class="form-control">
-                        <option value="1">Baobab City</option>
-                        <option value="2">Calypso</option>
+                      <select formControlName="hotel" id="hotel"
+                       name="hotel" class="form-control">
+                        <option *ngFor="let hotel of hotels" [value]="hotel.name">
+                          {{ hotel.name }}
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -44,8 +46,8 @@
                     <div class="form-group">
                       <label for="category" class="bmd-label-floating">Catégorie de cette chambre</label>
                       <select formControlName="category" id="category" name="category" class="form-control">
-                        <option value="">SUITE</option>
-                        <option value="2">CHAMBRE SIMPLE</option>
+                        <option *ngFor="let category of categories" [value]="category.label">
+                          {{ category.label }}</option>
                       </select>
                     </div>
                   </div>
