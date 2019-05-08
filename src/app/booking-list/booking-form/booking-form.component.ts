@@ -18,6 +18,8 @@ import * as firebase from 'firebase';
 })
 export class BookingFormComponent implements OnInit {
 
+  room_price: string;
+ 
   bookingForm: FormGroup;
   bookings: Booking[];
   bookingsSubscription: Subscription;
@@ -34,10 +36,11 @@ export class BookingFormComponent implements OnInit {
     private bookingService: BookingsService,
     private roomService: RoomsService,
     private clientService: ClientsService,
-    private room_fare: string,
     private router: Router) { }
 
   ngOnInit() {
+
+    this.room_price = '';
 
     this.roomsSubscription = this.roomService.roomsSubject.subscribe(
       (rooms: Room[]) => {
@@ -62,9 +65,6 @@ export class BookingFormComponent implements OnInit {
   
 
   }
-
-
-
 
   initForm() {
     this.bookingForm = this.formBuilder.group({
@@ -115,9 +115,11 @@ export class BookingFormComponent implements OnInit {
   }
 
   onChange(room_number: string) {
-    this.getRoomFare(room_number);
+    console.log(this.getRoomFare(room_number));
+  }
 
-    console.log(this.room_fare);
+  changeRoomPrice(price: string) {
+    this.room_price = price;
   }
 
   onBack() {
@@ -126,6 +128,8 @@ export class BookingFormComponent implements OnInit {
 
 
   getRoomFare(room_number: string) {
+
+    
 
     firebase.database().ref('rooms').once('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
@@ -140,7 +144,10 @@ export class BookingFormComponent implements OnInit {
               var fare = childSnapshot.val();
       
               if (fare.category_id === room.category_id) {
-                this.room_fare = fare.price;
+               
+
+                console.log(fare.price);
+               
               }
            
             });
@@ -148,6 +155,9 @@ export class BookingFormComponent implements OnInit {
         }
       });
     });
+
+    
+    
   }
 
 

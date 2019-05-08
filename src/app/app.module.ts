@@ -49,6 +49,7 @@ import { FareListComponent } from './fare-list/fare-list.component';
 import { SingleFareComponent } from './fare-list/single-fare/single-fare.component';
 import { FareFormComponent } from './fare-list/fare-form/fare-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoaderComponent } from './loader/loader.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -115,7 +116,8 @@ const appRoutes: Routes = [
     FareListComponent,
     SingleFareComponent,
     FareFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoaderComponent
   
   ],
   imports: [
