@@ -42,6 +42,25 @@ export class FaresService {
     );
   }
 
+ 
+  getRoomFare(room_category: string) {
+
+    firebase.database().ref('fares').once('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+     
+        var childData = childSnapshot.val();
+
+        if (childData.category_id === room_category) {
+          console.log("FARE NUMBER IN DB => " + childData.fare_number);
+          console.log("FARE PRICE IN DB => " + childData.price);
+          console.log("FARE ROOM CATEGORY IN DB => " + childData.category_id);
+        }
+     
+      });
+    });
+  }
+
+
   createNewFare(newFare: Fare) {
 
     this.fares.push(newFare);
@@ -49,6 +68,8 @@ export class FaresService {
     this.emitFares();
 
   }
+
+
 
   updateFare(fare: Fare, id: number) {
     firebase.database().ref('fares/' + id).update(fare);

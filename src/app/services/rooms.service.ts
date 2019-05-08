@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Room } from '../models/Room.model';
 import { Subject } from 'rxjs';
 import * as firebase from 'firebase';
-
+import { FaresService } from './fares.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable()
 export class RoomsService {
@@ -10,7 +11,9 @@ export class RoomsService {
   rooms: Room[] = [];
   roomsSubject = new Subject<Room[]>();
 
-  constructor() { }
+  
+
+  constructor(fareService: FaresService) { }
 
   emitRooms() {
     this.roomsSubject.next(this.rooms);
@@ -43,19 +46,41 @@ export class RoomsService {
     );
   }
 
-  getRoomByNumber(id: number) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('/rooms/' + id).once('value').then(
-          (data) => {
-            resolve(data.key);
-          }, (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
+  
+  getRoomFare(room_number: string) {
+
+   
+
+    firebase.database().ref('rooms').once('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var childKey = childSnapshot.key;
+        var room = childSnapshot.val();
+
+        if (room.room_number === room_number) {
+         
+          firebase.database().ref('fares').once('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+           
+              var fare = childSnapshot.val();
+      
+              if (fare.category_id === room.category_id) {
+               
+               
+              
+              }
+           
+            });
+          });
+        }
+     
+        
+      });
+    });
+
+   
+
   }
+
 
   createNewRoom(newRoom: Room) {
 
