@@ -51,6 +51,13 @@ export class BookingsService {
     this.emitBookings();
   }
 
+  updateBooking(booking: Booking, id: number) {
+
+    firebase.database().ref('bookings/' + id).update(booking);
+    this.emitBookings();
+
+  }
+
   removeBooking(Booking: Booking) {
 
     const bookingIndexToRemove = this.bookings.findIndex(

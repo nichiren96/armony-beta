@@ -1,3 +1,144 @@
-<p>
-  single-booking works!
-</p>
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/bookings" style="cursor: pointer" href="">Réservations</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Modification réservation</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Modifier cette réservation</h4>
+              <p class="card-category">Veuillez renseigner les détails sur cette réservation</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="bookingForm" (ngSubmit)="onUpdateBooking()">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_in" class="bmd-label-floating">Arrivée</label>
+                      <input type="date" class="" 
+                      formControlName="check_in" value="{{booking.check_in}}"
+                      name="check_in" id="check_in" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_out" class="bmd-label-floating">Départ</label>
+                      <input type="date" class=""
+                       formControlName="check_out" value="{{booking.check_out}}"
+                        name="check_out" id="check_out" />
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="client" class="bmd-label-floating">Client</label>
+                      <input formControlName="client"
+                       class="form-control"
+                        value ="{{booking.client_id}}" id="client" name="client">
+                        
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="product" class="bmd-label-floating">N° Chambre</label>
+                      <input name="room" id="room" value="{{booking.room_id}}"
+                       formControlName="room" class="form-control">
+                       
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="person" class="bmd-label-floating">Occupants</label>
+                      <input type="text" class="form-control" 
+                      formControlName="person" value="{{booking.person}}"
+                       id="person" name="person">
+
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="amount" class="bmd-label-floating">Montant</label>
+                      <input type="text" class="form-control"
+                       formControlName="amount" value="{{booking.amount}}"
+                        id="amount" name="amount">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" class="bmd-label-floating">Statut de la
+                        réservation</label>
+                      <input  type="text" class="form-control" 
+                      formControlName="status" value={{booking.status}}
+                       id="status" name="status">
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="mean_of_payment" class="bmd-label-floating">Moyen de
+                        Paiement</label>
+                      <input type="text" class="form-control" value="{{booking.mean_of_payment}}" 
+                        formControlName="mean_of_payment" id="mean_of_payment"
+                        name="mean_of_payment">
+                       
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="payment_status" class="bmd-label-floating">Statut du
+                        Paiement</label>
+                      <input type="text" value="{{booking.payment_status}}"
+                       class="form-control" formControlName="payment_status" id="payment_status"
+                        name="payment_status">
+                   
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div><!-- Card -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

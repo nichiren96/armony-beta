@@ -48,6 +48,7 @@ import { SingleBookingComponent } from './booking-list/single-booking/single-boo
 import { FareListComponent } from './fare-list/fare-list.component';
 import { SingleFareComponent } from './fare-list/single-fare/single-fare.component';
 import { FareFormComponent } from './fare-list/fare-form/fare-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -73,8 +74,9 @@ const appRoutes: Routes = [
   { path: 'fares', canActivate: [AuthGuardService], component: FareListComponent},
   { path: 'fares/new', canActivate: [AuthGuardService], component: FareFormComponent},
   { path: 'fares/view/:id', canActivate: [AuthGuardService], component: SingleFareComponent},
+  { path: 'dashboard', canActivate: [AuthGuardService], component: DashboardComponent},
   { path: '', redirectTo: 'auth/signin', pathMatch: 'full'},
-  { path: '**', redirectTo: 'auth/signin'}
+  { path: '**', redirectTo: 'auth/signin'},
 ];
 
 
@@ -112,7 +114,8 @@ const appRoutes: Routes = [
     SingleBookingComponent,
     FareListComponent,
     SingleFareComponent,
-    FareFormComponent
+    FareFormComponent,
+    DashboardComponent
   
   ],
   imports: [

@@ -1,3 +1,110 @@
-<p>
-  single-fare works!
-</p>
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/fares" style="cursor: pointer" href="">Tarifs</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Modification tarif</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Modifier ce tarif</h4>
+              <p class="card-category">Veuillez renseigner les détails sur ce tarif</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="fareForm" (ngSubmit)="onUpdateFare()">
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="fare" class="bmd-label-floating">Tarif</label>
+                      <input type="text" class="form-control" id="fare"
+                       formControlName="fare" name="fare"
+                        value="{{fare.fare}}" />
+                      <input type="hidden" formControlName="fare_number" name="fare_number" id="fare_number"
+                        value="{{fare.fare_number}}" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Catégorie de chambres</label>
+                      <input formControlName="category"
+                       class="form-control" id="category" value="{{fare.category_id}}"
+                        name="category">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="category" class="bmd-label-floating">Classe de l'hôtel</label>
+                      <input type="text" formControlName="classe"
+                       class="form-control" value="{{fare.class_id}}"
+                        name="classe" id="classe">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="fare" class="bmd-label-floating">Prix par pax</label>
+                      <input type="text" class="form-control" value="{{fare.price}}" id="price" formControlName="price"
+                        name="price" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-3">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <div class="form-group">
+                        <label class="bmd-label-floating"> Indiquez les carctéristiques
+                          de ce tarif
+                        </label>
+                        <textarea formControlName="description" class="form-control" name="description" id="description"
+                          value="{{fare.description}}" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>

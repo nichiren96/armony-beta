@@ -51,8 +51,9 @@ export class RoomsService {
 
   }
 
-  updateRoom(room: Room) {
-    firebase.database().ref('/rooms').update(room);
+  updateRoom(room: Room, id: number) {
+    firebase.database().ref('rooms/' + id).update(room);
+    this.emitRooms();
   }
 
 

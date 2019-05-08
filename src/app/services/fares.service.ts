@@ -50,8 +50,10 @@ export class FaresService {
 
   }
 
-  updateFare(fare: Fare) {
-    firebase.database().ref('/fares').update(fare);
+  updateFare(fare: Fare, id: number) {
+    firebase.database().ref('fares/' + id).update(fare);
+    this.emitFares();
+
   }
 
 
