@@ -11,7 +11,7 @@
         <div class="col-lg-8 col-md-6 col-sm-6">
           <nav aria-label="breadcrumb" role="navigation">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a routerLink="/clients" style="cursor: pointer" href="">Clients</a></li>
+              <li class="breadcrumb-item"><a routerLink="/categories" style="cursor: pointer" href="">Catégories</a></li>
               <li class="breadcrumb-item active" aria-current="page">Ajouter une catégorie</li>
             </ol>
           </nav>
@@ -34,8 +34,13 @@
                   <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="form-group">
                       <label for="category" class="bmd-label-floating">Catégorie</label>
-                      <input formControlName="category" type="text" class="form-control" name="category"
-                        id="category" />
+                      <select formControlName="category" type="text" class="form-control" name="category"
+                        id="category">
+                          <option value="chambre">Chambre</option>
+                          <option value="suite">Suite</option>
+                          <option value="bungalow">Bungalow</option>
+                          <option value="chalet">Chalet</option>
+                        </select>
                     </div>
                   </div>
                 </div>
@@ -45,10 +50,11 @@
                     <div class="form-group">
                       <label>Description</label>
                       <div class="form-group">
-                        <label class="bmd-label-floating"> Indiquez les carctéristiques
-                          des chambres dans cette catégorie
+                        <label class="bmd-label-floating"> Indiquez une brève description
+                            de cette catégorie (Optionel)
                         </label>
-                        <textarea formControlName="description" class="form-control" name="description" id="description"
+                        <textarea formControlName="description" class="form-control" 
+                          name="description" id="description"
                           rows="5"></textarea>
                       </div>
                     </div>

@@ -64,9 +64,24 @@ export class ClientsService {
 
   }
 
-  updateClient(client: Client, id: number) {
+  updateClient(client: Client) {
 
-    firebase.database().ref('clients/' + id).update(client);
+    firebase.database().ref('clients').once('value', function (snapshot) {
+
+      snapshot.forEach(function (childSnapshot) {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+
+        if (childData.phone == client.phone ) {
+
+          firebase.database().ref('clients/'+ childKey ).update(client);
+        }
+
+      });
+
+    });
+
+    this.saveClients();
     this.emitClients();
 
   }

@@ -11,7 +11,7 @@ import { ClientsService } from '../../services/clients.service';
 })
 export class SingleClientComponent implements OnInit {
 
-  clientForm: FormGroup;
+  editClientForm: FormGroup;
   client: Client;
   client_id: number;
 
@@ -33,7 +33,7 @@ export class SingleClientComponent implements OnInit {
   }
 
   initForm() {
-    this.clientForm = this.formBuilder.group({
+    this.editClientForm = this.formBuilder.group({
       nationality: ['', Validators.required],
       sex: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -45,17 +45,17 @@ export class SingleClientComponent implements OnInit {
   }
 
   onUpdateClient() {
-    const nationality = this.clientForm.get('nationality').value;
-    const sex = this.clientForm.get('sex').value;
-    const firstname = this.clientForm.get('firstname').value;
-    const lastname = this.clientForm.get('lastname').value;
-    const phone = this.clientForm.get('phone').value;
-    const passport = this.clientForm.get('passport').value;
-    const remark = this.clientForm.get('remark').value;
+    const nationality = this.editClientForm.get('nationality').value;
+    const sex = this.editClientForm.get('sex').value;
+    const firstname = this.editClientForm.get('firstname').value;
+    const lastname = this.editClientForm.get('lastname').value;
+    const phone = this.editClientForm.get('phone').value;
+    const passport = this.editClientForm.get('passport').value;
+    const remark = this.editClientForm.get('remark').value;
 
     const client = new Client(sex, nationality, firstname, lastname, phone, passport, remark);
 
-    this.clientService.updateClient(client, this.client_id);
+    this.clientService.updateClient(client);
 
     this.router.navigate(['/clients'])
   }
