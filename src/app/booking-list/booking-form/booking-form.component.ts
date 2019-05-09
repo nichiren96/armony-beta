@@ -6,6 +6,7 @@ import { BookingsService } from '../../services/bookings.service';
 import { Router } from '@angular/router';
 import { Room } from '../../models/Room.model';
 import { Client } from '../../models/Client.model';
+import { Fare } from '../../models/Fare.model';
 import { RoomsService } from '../../services/rooms.service';
 import { ClientsService } from '../../services/clients.service';
 import * as firebase from 'firebase';
@@ -18,7 +19,9 @@ import * as firebase from 'firebase';
 })
 export class BookingFormComponent implements OnInit {
 
-  room_price: string;
+  room_price: number;
+  amount: number;
+  person:number;
  
   bookingForm: FormGroup;
   bookings: Booking[];
@@ -40,7 +43,9 @@ export class BookingFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.room_price = '';
+    this.room_price = 0;
+    this.amount = 0;
+    this.person = 1;
 
     this.roomsSubscription = this.roomService.roomsSubject.subscribe(
       (rooms: Room[]) => {
@@ -70,8 +75,8 @@ export class BookingFormComponent implements OnInit {
     this.bookingForm = this.formBuilder.group({
       client: ['', Validators.required],
       room: ['', Validators.required],
-      person: ['', Validators.required],
-      amount: ['ppppp', Validators.required],
+      person: ['1', Validators.required],
+      amount: [this.room_price, Validators.required],
       status: ['', Validators.required],
       check_in: ['', Validators.required],
       check_out: ['', Validators.required],
@@ -115,12 +120,32 @@ export class BookingFormComponent implements OnInit {
   }
 
   onChange(room_number: string) {
-    console.log(this.getRoomFare(room_number));
+
+    this.getRoomFarePrice().then(
+      (rooms: Room[]) =>{
+        rooms.forEach((room) => {
+          if (room.room_number === room_number) {
+            this.getFare().then(
+              (fares: Fare[]) => {
+                fares.forEach((fare) => {
+                  if (fare.category_id === room.category_id) {
+                    this.room_price = fare.price;
+                    this.updateAmount("1");
+                    console.log('ROOM PRICE PER PAX IN COMPONENT: '+this.room_price);
+                  }
+                });
+              }
+            );
+          }
+        });
+    });
   }
 
-  changeRoomPrice(price: string) {
-    this.room_price = price;
+  updateAmount(person_number: string) {
+    this.person = parseInt(person_number);
+    this.amount = this.room_price*this.person;
   }
+
 
   onBack() {
     this.router.navigate(['/bookings']);
@@ -158,6 +183,35 @@ export class BookingFormComponent implements OnInit {
 
     
     
+  }
+
+
+  getRoomFarePrice() {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('rooms').once('value').then(
+          (rooms) => {
+            resolve(rooms.val())
+          }, (error) => {
+            reject(error)
+          }
+        );
+      }
+    );
+  }
+
+  getFare() {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('fares').once('value').then(
+          (fares) => {
+            resolve(fares.val())
+          }, (error) => {
+            reject(error)
+          }
+        );
+      }
+    );
   }
 
 

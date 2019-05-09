@@ -76,14 +76,18 @@
                   <div class="col-md-2">
                     <div class="form-group">
                       <label for="person" class="bmd-label-floating">Occupants</label>
-                      <input type="text" class="form-control" formControlName="person" id="person" name="person">
+                      <input type="text" class="form-control"
+                       formControlName="person" 
+                       id="person" name="person" (change)="updateAmount($event.target.value)">
 
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                       <label for="amount" class="bmd-label-floating">Montant</label>
-                      <input type="text" class="form-control" formControlName="amount" id="amount" name="amount">
+                      <input type="text" 
+                      class="form-control" formControlName="amount"
+                       id="amount" name="amount" [(ngModel)]="room_price*person">
 
                     </div>
                   </div>
