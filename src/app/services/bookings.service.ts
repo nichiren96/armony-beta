@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/';
 import * as firebase from 'firebase';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,8 @@ export class BookingsService {
 
   bookings: Booking[] = [];
   bookingsSubject = new Subject<Booking[]>();
+
+
 
 
   constructor() { }
@@ -56,6 +59,49 @@ export class BookingsService {
     firebase.database().ref('bookings/' + id).update(booking);
     this.emitBookings();
 
+  }
+
+  
+  getBookingByStatus() {
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/bookings').orderByChild('status')
+        .once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  getBookingByRoomNumber(room_number: string) {
+    return new Promise((resolve, reject) => {
+      firebase.database().ref('bookings').orderByChild('room_id')
+              .equalTo(room_number)
+              .on('value', (data) => {
+                resolve(data.val())
+              });
+    });
+  }
+
+  getTodayTotalCheckIn() {
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/bookings').orderByChild('check_in')
+        .equalTo('2019-05-13').once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
 
   removeBooking(Booking: Booking) {

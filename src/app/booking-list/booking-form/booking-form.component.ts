@@ -20,7 +20,7 @@ import * as firebase from 'firebase';
 export class BookingFormComponent implements OnInit {
 
   room_price: number;
-  amount: number;
+  booking_amount: number;
   person:number;
  
   bookingForm: FormGroup;
@@ -44,9 +44,7 @@ export class BookingFormComponent implements OnInit {
   ngOnInit() {
 
     this.room_price = 0;
-    this.amount = 0;
-    this.person = 1;
-
+  
     this.roomsSubscription = this.roomService.roomsSubject.subscribe(
       (rooms: Room[]) => {
         this.rooms = rooms;
@@ -75,8 +73,8 @@ export class BookingFormComponent implements OnInit {
     this.bookingForm = this.formBuilder.group({
       client: ['', Validators.required],
       room: ['', Validators.required],
-      person: ['1', Validators.required],
-      amount: [this.room_price, Validators.required],
+      person: ['', Validators.required],
+      amount: ['', Validators.required],
       status: ['', Validators.required],
       check_in: ['', Validators.required],
       check_out: ['', Validators.required],
@@ -99,11 +97,9 @@ export class BookingFormComponent implements OnInit {
 
     const user_id = firebase.auth().currentUser.email;
 
+    const booking_number = room_id + "-" + Date.now().toString().substring(7);
 
-
-    const booking_number = room_id + "/" + Date.now().toString()
-
-    const newBooking = new Booking(Date.now().toString(),
+    const newBooking = new Booking(booking_number,
       check_in,
       check_out,
       person,
@@ -119,7 +115,7 @@ export class BookingFormComponent implements OnInit {
     this.router.navigate(['/bookings'])
   }
 
-  onChange(room_number: string) {
+  onRoomNumberChange(room_number: string) {
 
     this.getRoomFarePrice().then(
       (rooms: Room[]) =>{
@@ -129,9 +125,7 @@ export class BookingFormComponent implements OnInit {
               (fares: Fare[]) => {
                 fares.forEach((fare) => {
                   if (fare.category_id === room.category_id) {
-                    this.room_price = fare.price;
-                    this.updateAmount("1");
-                    console.log('ROOM PRICE PER PAX IN COMPONENT: '+this.room_price);
+                   this.room_price = fare.price ;
                   }
                 });
               }
@@ -141,50 +135,15 @@ export class BookingFormComponent implements OnInit {
     });
   }
 
-  updateAmount(person_number: string) {
-    this.person = parseInt(person_number);
-    this.amount = this.room_price*this.person;
-  }
-
-
   onBack() {
     this.router.navigate(['/bookings']);
   }
 
+  onRoomGuestNumberChange(number_of_guests: number) {
 
-  getRoomFare(room_number: string) {
+    console.log("NUMBER OF GUESTS: " + number_of_guests);
 
-    
-
-    firebase.database().ref('rooms').once('value', function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        var childKey = childSnapshot.key;
-        var room = childSnapshot.val();
-
-        if (room.room_number === room_number) {
-         
-          firebase.database().ref('fares').once('value', function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-           
-              var fare = childSnapshot.val();
-      
-              if (fare.category_id === room.category_id) {
-               
-
-                console.log(fare.price);
-               
-              }
-           
-            });
-          });
-        }
-      });
-    });
-
-    
-    
   }
-
 
   getRoomFarePrice() {
     return new Promise(
