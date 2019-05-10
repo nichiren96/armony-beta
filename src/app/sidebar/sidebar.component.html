@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li class="nav-item" routerLinkActive="active" *ngIf="isAuth">
+                <a class="nav-link" routerLink="/search" style="cursor: pointer">
+                    <i class="material-icons">person_add</i>
+                    <p>Nouvelle réservation</p>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="isAuth">
                 <a class="nav-link" routerLink="/bookings" style="cursor: pointer">
                     <i class="material-icons">shopping_cart</i>
                     <p>Réservations</p>
@@ -60,7 +66,7 @@
                     <i class="material-icons">hotel</i>
                     <p>Hôtels</p>
                 </a>
-            </li>     
+            </li>
             <li class="nav-item" *ngIf="isAuth">
                 <a class="nav-link" (click)="onSignOut()" style="cursor: pointer">
                     <i class="material-icons">logout</i>

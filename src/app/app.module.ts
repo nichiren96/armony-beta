@@ -72,6 +72,7 @@ const appRoutes: Routes = [
   { path: 'rooms/view/:id', canActivate: [AuthGuardService], component: SingleRoomComponent},
   { path: 'bookings', canActivate: [AuthGuardService], component: BookingListComponent},
   { path: 'bookings/new', canActivate: [AuthGuardService], component: BookingFormComponent},
+  { path: 'search', canActivate: [AuthGuardService], component: SearchBookingComponent},
   { path: 'bookings/view/:id', canActivate: [AuthGuardService], component: SingleBookingComponent},
   { path: 'fares', canActivate: [AuthGuardService], component: FareListComponent},
   { path: 'fares/new', canActivate: [AuthGuardService], component: FareFormComponent},

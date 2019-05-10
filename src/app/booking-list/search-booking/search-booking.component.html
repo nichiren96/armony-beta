@@ -1,3 +1,87 @@
-<p>
-  search-booking works!
-</p>
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <!-- Content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6">
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/bookings" style="cursor: pointer" href="">Réservations</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Nouvelle réservation</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-3">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Créer une nouvelle réservation</h4>
+              <p class="card-category">Veuillez renseigner les détails sur cette réservation</p>
+              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+            </div>
+
+            <div class="card-body">
+
+              <form [formGroup]="bookingSearchForm" (ngSubmit)="onSearchBooking()">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_in" class="">Arrivée</label>
+                      <input type="date" class="form-control" formControlName="check_in" name="check_in" id="check_in" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="check_out" class="bmd-label-floating">Départ</label>
+                      <input type="date" class="form-control" formControlName="check_out" name="check_out" id="check_out" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="person" class="bmd-label-floating">Nombre de personnes</label>
+                      <select type="text" class="form-control"
+                        formControlName="person" value="person"
+                        id="person" name="person">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> 
+               
+
+                <div class="row">
+                  <button class="btn btn-primary" [disabled]="bookingSearchForm.invalid" type="submit">Rechercher</button>
+                </div>
+              </form>
+
+            </div>
+          </div><!-- Card -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+</div>
