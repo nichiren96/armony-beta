@@ -62,7 +62,7 @@ export class BookingsService {
   }
 
   
-  getBookingByStatus() {
+  getBookingsByStatus() {
 
     return new Promise(
       (resolve, reject) => {
@@ -78,15 +78,40 @@ export class BookingsService {
     );
   }
 
-  getBookingByRoomNumber(room_number: string) {
-    return new Promise((resolve, reject) => {
-      firebase.database().ref('bookings').orderByChild('room_id')
-              .equalTo(room_number)
-              .on('value', (data) => {
-                resolve(data.val())
-              });
-    });
+  getBookingsByRoomNumber(room_number: string) {
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/bookings').orderByChild('room_id')
+        .equalTo(room_number)
+        .once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
   }
+
+  getBookingsByClient(client: string) {
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/bookings').orderByChild('client_id')
+        .equalTo(client)
+        .once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
 
   getTodayTotalCheckIn() {
 

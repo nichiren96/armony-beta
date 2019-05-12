@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor(private bookingService: BookingsService) { }
 
   ngOnInit() {
-    this.bookingService.getBookingByStatus()
+    this.bookingService.getBookingsByStatus()
       .then((bookings: Booking[]) => {
         bookings.forEach((booking) => {
           if(booking.status == "En attente") {
@@ -37,20 +37,12 @@ export class DashboardComponent implements OnInit {
           }
         });
       });
-/*
-    this.bookingService.getBookingByRoomNumber("23").then(
-      (bookings: Booking[]) => {
-        bookings.forEach((booking) => {
-          console.log("CHAMBRE N° " + booking.room_id);
-          console.log("Début séjour " + booking.check_in);
-          console.log("Fin séjour " + booking.check_out);
-          console.log("CLient " + booking.client_id);
-          console.log("===============================================");
-          
 
-        });
+    this.bookingService.getBookingsByRoomNumber("342").then(
+      (bookings: Booking[]) => {
+        this.bookings = bookings;
       }
-    );*/
+    )
   }
 
 }

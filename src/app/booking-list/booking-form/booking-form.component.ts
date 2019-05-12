@@ -21,7 +21,6 @@ export class BookingFormComponent implements OnInit {
 
   room_price: number;
   booking_amount: number;
-  person:number;
  
   bookingForm: FormGroup;
   bookings: Booking[];
