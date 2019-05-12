@@ -1,0 +1,85 @@
+<router-outlet></router-outlet>
+<div class="main-panel">
+
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+
+  <!-- Content -->
+  <div class="content">
+     
+    
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header card-header-primary">
+                          <h4 class="card-title">Where are you going ?</h4>
+                          <p class="card-category">Book your hotel now
+                          </p>
+                      </div>
+                      <div class="card-body">
+                          <form id="addTripForm">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="destination"
+                                              class="bmd-label-floating">Destination</label>
+                                          <select name="destination" id="destination"
+                                              class="form-control">
+                                              <option value="Antananarivo">Antananarivo</option>
+                                              <option value="Antsiranana">Antsiranana</option>
+                                              <option value="Mahajanga">Mahajanga</option>
+                                              <option value="Toamaasina">Toamasina</option>
+                                              <option value="Fianarantsoa">Fianarantsoa</option>
+                                              <option value="Toliary">Toliary</option>
+                                              <option value="Antsirabe">Antsirabe</option>
+                                              <option value="Nosy Be">Nosy Be</option>
+                                              <option value="Tolagnaro">Tolagnaro</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="checkin" class="label-control">Check-In</label>
+                                          <input type="date" class="datetimepicker form-control"
+                                              name="checkin" id="checkin" />
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="checkout" class="label-control">Check-Out</label>
+                                        <input type="date" class="datetimepicker form-control"
+                                            name="checkout" id="checkout" />
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+
+                      <div class="row text-center">
+                          <div class="col-md-12">
+                              <button type="submit" class="btn btn-primary">Search</button>
+                              <div class="clearfix"></div>
+                          </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      
+  </div>      
+            
+  <!-- End Content -->
+
+  <app-footer></app-footer>
+
+</div>

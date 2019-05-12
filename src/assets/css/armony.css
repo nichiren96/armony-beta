@@ -1,0 +1,36 @@
+
+tr div{
+    
+    background: #f55145;
+    width: 40px;
+    text-align: center;
+    border-radius: 10%;
+    padding: 10px 0;
+    font-weight:  bold;
+    cursor:  pointer;
+}
+
+#result {
+    display: none;
+}
+
+
+
+.departure {
+    background: url('../img/baseline-calendar_today-24px.svg');
+    background-repeat: none;;
+    background-size: cover;
+    background-position: 50%;
+    width: 150px;
+    line-height: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 10%;
+    font-weight:  bold;
+    cursor:  pointer;
+}
+
+.departure span {
+    padding-top: 20px;
+    font-size: 28px;
+}
