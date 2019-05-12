@@ -142,6 +142,7 @@ export class BookingFormComponent implements OnInit {
   onRoomGuestNumberChange(number_of_guests: number) {
 
     console.log("NUMBER OF GUESTS: " + number_of_guests);
+    this.booking_amount = number_of_guests * this.room_price;
 
   }
 
